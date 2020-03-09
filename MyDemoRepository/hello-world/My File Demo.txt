@@ -1,0 +1,28 @@
+SendKeys Element Without using sendKeys
+
+WebDriver driver = new FirefoxDriver();
+
+JavascriptExecutor executor = (JavascriptExecutor)driver;
+
+executor.executeScript("document.getElementById("textbox_id").value='new value';);
+
+
+Navigate Calendar without using loop
+  DateFormat dateFormat2 = new SimpleDateFormat("dd"); 
+            Date date2 = new Date();
+
+            String today = dateFormat2.format(date2); 
+
+            //find the calendar
+            WebElement dateWidget = driver.findElement(By.id("dp-calendar"));  
+            List<WebElement> columns=dateWidget.findElements(By.tagName("td"));  
+
+            //comparing the text of cell with today's date and clicking it.
+            for (WebElement cell : columns)
+            {
+               if (cell.getText().equals(today))
+               {
+                  cell.click();
+                  break;
+               }
+            }
